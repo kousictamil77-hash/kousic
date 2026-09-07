@@ -1188,7 +1188,7 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }
 
-        // --- Exact 2.0s Timeline Cinematic Enter Sequence ---
+        // --- Exact Timeline Cinematic Enter Sequence ---
         const skipBtn = document.getElementById('skipIntroBtn');
         const introActions = document.querySelector('.intro-actions');
         let entranceExecuted = false;
@@ -1197,7 +1197,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (entranceExecuted) return;
             entranceExecuted = true;
 
-            // 0.00s: User clicks ENTER ARCHIVE
+            // 0.00s: User clicks ENTER ARCHIVE or presses Enter key
             if (enterBtn) {
                 enterBtn.classList.add('compressing');
                 enterBtn.style.pointerEvents = 'none';
@@ -1208,74 +1208,51 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (enterBtn) enterBtn.classList.remove('compressing');
             }, 50);
 
-            // 0.10s: Background begins cinematic zoom & subtle screen shake
+            // 0.10s: Background begins cinematic zoom, screen shake & audio start
             setTimeout(() => {
                 entryScreen.classList.add('transition-zooming', 'shaking');
-            }, 100);
-
-            // 0.20s: Guren no Yumiya starts
-            setTimeout(() => {
                 bgm.volume = 0;
                 bgm.muted = isMuted;
                 bgm.play().catch(e => console.log('BGM Autoplay blocked:', e));
-            }, 200);
+            }, 100);
 
-            // 0.20s–0.80s: Fade music smoothly from 0 to selected volume (0.4)
+            // 0.10s–0.50s: Fade music smoothly from 0 to selected volume (0.4)
             setTimeout(() => {
                 let vol = 0;
                 const fade = setInterval(() => {
-                    vol += 0.05;
+                    vol += 0.08;
                     if (vol >= 0.4) {
                         bgm.volume = 0.4;
                         clearInterval(fade);
                     } else {
                         bgm.volume = vol;
                     }
-                }, 75);
+                }, 50);
+            }, 100);
+
+            // 0.20s: Fog boost & darkening
+            setTimeout(() => {
+                entryScreen.classList.add('transition-fog-boost', 'transition-darkening');
             }, 200);
 
-            // 0.30s: Fog becomes slightly stronger
+            // 0.40s: Title & Subtitle fade away
             setTimeout(() => {
-                entryScreen.classList.add('transition-fog-boost');
-            }, 300);
+                entryScreen.classList.add('title-fade-away', 'chronicles-fade-away', 'light-smoke-sweep');
+            }, 400);
 
-            // 0.50s: Screen begins darkening
-            setTimeout(() => {
-                entryScreen.classList.add('transition-darkening');
-            }, 500);
-
-            // 0.70s: ATTACK ON TITAN title fades away
-            setTimeout(() => {
-                entryScreen.classList.add('title-fade-away');
-            }, 700);
-
-            // 0.90s: CHRONICLES fades away
-            setTimeout(() => {
-                entryScreen.classList.add('chronicles-fade-away');
-            }, 900);
-
-            // 1.00s: Cinematic light/smoke transition
-            setTimeout(() => {
-                entryScreen.classList.add('light-smoke-sweep');
-            }, 1000);
-
-            // 1.20s: Intro begins moving away
-            setTimeout(() => {
-                entryScreen.classList.add('cinematic-exit');
-            }, 1200);
-
-            // 1.50s: Homepage starts appearing
+            // 0.50s: Reveal homepage background (fade out intro overlay)
             setTimeout(() => {
                 document.body.classList.remove('page-transitioning');
                 soundBtns.forEach(b => b.style.display = 'inline-block');
                 localStorage.setItem('aotIntroCompleted', 'true');
-            }, 1500);
+                entryScreen.classList.add('cinematic-exit');
+            }, 500);
 
-            // 2.00s: Intro is completely unmounted from DOM
+            // 1.00s: Intro completely unmounts from DOM
             setTimeout(() => {
                 if (particleAnimationId) cancelAnimationFrame(particleAnimationId);
                 entryScreen.remove();
-            }, 2000);
+            }, 1000);
         };
 
         const skipHomepageReveal = () => {
@@ -1289,7 +1266,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (particleAnimationId) cancelAnimationFrame(particleAnimationId);
             setTimeout(() => {
                 entryScreen.remove();
-            }, 600);
+            }, 500);
         };
 
         if (enterBtn) {
