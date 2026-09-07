@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="AOT Chronicles - Historical Timeline Archive">
+    <title>Story | AOT Chronicles</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;800&family=Outfit:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="story-page">
+
+    <!-- Cinematic Loader -->
+    <div id="page-loader">
+        <div class="logo" style="font-family:var(--font-heading); color:var(--accent); letter-spacing:8px;">AOT <span style="color:#fff;">CHRONICLES</span></div>
+    </div>
+    <div id="scrollProgress"></div>
+    
+    <div class="custom-cursor"></div>
+    <div class="custom-cursor-ring"></div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="index.html" class="logo">AOT <span>CHRONICLES</span></a>
+            
+            <div class="nav-right mobile-icons">
+                <button class="hamburger">
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                </button>
+            </div>
+
+            <div class="nav-right desktop-icons">
+                <ul class="nav-links">
+                    <li><a href="index.html" class="nav-link">Home</a></li>
+                    <li><a href="characters.html" class="nav-link">Characters</a></li>
+                    <li><a href="titans.html" class="nav-link">Titans</a></li>
+                    <li><a href="story.html" class="nav-link active">Story</a></li>
+                    <li><a href="world.html" class="nav-link">World</a></li>
+                    <li><a href="gallery.html" class="nav-link">Gallery</a></li>
+                </ul>
+                <div class="nav-icons">
+                    <button class="icon-btn" id="soundBtn">🔊</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 1. Story Hero -->
+    <header class="page-header story-hero parallax-bg" style="background-image: url('images/story-bg.jpg');">
+        <div class="container reveal">
+            <span class="archive-label">ARCHIVE 003</span>
+            <span class="archive-label" style="margin-left:0.5rem; border-color:var(--military-green);">HISTORICAL RECORD</span>
+            <span class="archive-label" style="margin-left:0.5rem; border-color:var(--military-green-light); color:var(--military-green-light);">TIMELINE DATABASE</span>
+            
+            <h1 style="margin-top: 1rem;">THE HISTORY OF <span>HUMANITY</span></h1>
+            <p>A journey through walls, Titans, freedom, and the truth beyond the sea.</p>
+        </div>
+        <div class="scroll-indicator fade-in" style="position:absolute; bottom:2rem; left:50%; transform:translateX(-50%); font-family:monospace; color:var(--muted); letter-spacing:2px; font-size:0.8rem;">SCROLL TO INITIALIZE</div>
+    </header>
+
+    <!-- 4. Season Navigation (Sticky) -->
+    <div class="season-nav-container">
+        <div class="container" style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem;">
+            <div style="font-family:monospace; color:var(--muted); letter-spacing:2px; font-size:0.9rem;">STORY BY SEASON</div>
+            <div class="season-links">
+                <a href="#season-1" class="season-link active">SEASON 1</a>
+                <a href="#season-2" class="season-link">SEASON 2</a>
+                <a href="#season-3" class="season-link">SEASON 3</a>
+                <a href="#season-4" class="season-link">FINAL SEASON</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- 7 & 6. Search and Spoiler Controls -->
+    <section class="section" style="padding: 2rem 0; border-bottom: 1px solid var(--border); background:rgba(0,0,0,0.5);">
+        <div class="container reveal">
+            <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:2rem;">
+                <div class="story-search" style="flex:1; min-width:280px;">
+                    <input type="text" id="storySearchInput" placeholder="SEARCH HISTORICAL RECORDS..." style="width:100%; padding:0.8rem; background:rgba(255,255,255,0.05); border:1px solid var(--border); color:#fff; font-family:monospace; font-size:1rem; outline:none;" autocomplete="off">
+                    <div id="storyCount" style="font-family:monospace; color:var(--military-green-light); font-size:0.8rem; margin-top:0.5rem;">10 RECORDS FOUND</div>
+                </div>
+                
+                <div class="spoiler-control" style="display:flex; align-items:center; gap:1rem;">
+                    <span style="font-family:monospace; color:var(--muted); letter-spacing:2px; font-size:0.9rem;">SPOILER MODE</span>
+                    <button id="spoilerToggleBtn" class="archive-label" style="background:transparent; cursor:pointer; color:var(--accent); border-color:var(--accent);">SPOILERS HIDDEN</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 2 & 3. Main Timeline Container -->
+    <section class="section" style="padding-top: 4rem; position:relative; overflow:hidden;">
+        <div class="container">
+            <div class="timeline-container" id="timelineContainer">
+                <div class="timeline-line" id="timelineLine"></div>
+                <!-- Injected via JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- 8. Important Locations -->
+    <section class="section" style="background: rgba(10,15,10,0.8); border-top:1px solid var(--border); border-bottom:1px solid var(--border);">
+        <div class="container reveal">
+            <div class="section-title">
+                <span class="archive-label">LOCATIONS THROUGH HISTORY</span>
+            </div>
+            <div class="location-scroll-row" style="display:flex; gap:2rem; overflow-x:auto; padding-bottom:2rem; scroll-snap-type: x mandatory;">
+                <!-- Filled via JS or static -->
+                <div class="location-card" onclick="openDataModal('location', 'shiganshina')">
+                    <img src="images/shiganshina.jpg" alt="Shiganshina">
+                    <div class="loc-card-content">
+                        <h4>SHIGANSHINA</h4>
+                        <span class="archive-label">VIEW RECORD</span>
+                    </div>
+                </div>
+                <div class="location-card" onclick="openDataModal('location', 'trost')">
+                    <img src="images/trost.jpg" alt="Trost">
+                    <div class="loc-card-content">
+                        <h4>TROST</h4>
+                        <span class="archive-label">VIEW RECORD</span>
+                    </div>
+                </div>
+                <div class="location-card" onclick="openDataModal('location', 'stohess')">
+                    <img src="images/stohess.jpg" alt="Stohess">
+                    <div class="loc-card-content">
+                        <h4>STOHESS</h4>
+                        <span class="archive-label">VIEW RECORD</span>
+                    </div>
+                </div>
+                <div class="location-card" onclick="openDataModal('location', 'mitras')">
+                    <img src="images/mitras.jpg" alt="Mitras">
+                    <div class="loc-card-content">
+                        <h4>MITRAS</h4>
+                        <span class="archive-label">VIEW RECORD</span>
+                    </div>
+                </div>
+                <div class="location-card" onclick="openDataModal('location', 'paradis')">
+                    <img src="images/paradis.jpg" alt="Paradis">
+                    <div class="loc-card-content">
+                        <h4>PARADIS ISLAND</h4>
+                        <span class="archive-label">VIEW RECORD</span>
+                    </div>
+                </div>
+                <div class="location-card" onclick="openDataModal('location', 'liberio')">
+                    <img src="images/liberio.jpg" alt="Liberio">
+                    <div class="loc-card-content">
+                        <h4>LIBERIO</h4>
+                        <span class="archive-label">VIEW RECORD</span>
+                    </div>
+                </div>
+                <div class="location-card" onclick="openDataModal('location', 'marley')">
+                    <img src="images/marley.jpg" alt="Marley">
+                    <div class="loc-card-content">
+                        <h4>MARLEY</h4>
+                        <span class="archive-label">VIEW RECORD</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 9. Before / After Section -->
+    <section class="section" style="padding:0; height:80vh; min-height:600px; position:relative;">
+        <div class="split-slider-container" id="beforeAfterSlider">
+            <!-- Background: After Truth -->
+            <div class="split-slider-after" style="background-image:url('images/after-truth.jpg');">
+                <div class="split-label right">HUMANITY AFTER THE TRUTH</div>
+            </div>
+            
+            <!-- Foreground: Before Truth (Clipped) -->
+            <div class="split-slider-before" id="sliderBefore" style="background-image:url('images/before-truth.jpg'); width:50%;">
+                <div class="split-label left">HUMANITY BEFORE THE TRUTH</div>
+            </div>
+            
+            <!-- Draggable Handle -->
+            <div class="split-slider-handle" id="sliderHandle" style="left:50%;">
+                <div class="handle-icon">&lt;&gt;</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 10. Final Archive Section -->
+    <section class="section" style="text-align:center; padding: 6rem 2rem;">
+        <div class="container reveal-scale">
+            <span class="archive-label" style="border-color:var(--accent); color:var(--accent);">THE RECORD CONTINUES</span>
+            <h2 style="font-family:var(--font-heading); font-size:clamp(2rem, 4vw, 3rem); margin: 2rem 0; letter-spacing:4px;">"Every discovery changed what humanity believed about its world."</h2>
+            <a href="index.html" class="btn btn-outline" style="margin-top:2rem;">RETURN TO ARCHIVE</a>
+        </div>
+    </section>
+
+    <!-- Dynamic Modal -->
+    <div class="modal-overlay" id="dynamicModal" role="dialog" aria-modal="true">
+        <div class="modal-content"></div>
+    </div>
+
+    <button class="back-to-top" id="backToTop">&#8593;</button>
+
+    <footer>
+        <div class="container">
+            <h2 class="logo reveal">AOT <span>CHRONICLES</span></h2>
+            <div class="copyright reveal"><p>&copy; 2026 AOT Chronicles. Historical Archive.</p></div>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+</html>

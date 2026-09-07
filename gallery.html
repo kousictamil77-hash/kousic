@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="AOT Chronicles - Premium Image Gallery">
+    <title>Gallery | AOT Chronicles</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;800&family=Outfit:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Cinematic Loader -->
+    <div id="page-loader">
+        <div class="logo" style="font-family:var(--font-heading); color:var(--accent); letter-spacing:8px;">AOT <span style="color:#fff;">CHRONICLES</span></div>
+    </div>
+    <div id="scrollProgress"></div>
+    
+    <div class="custom-cursor"></div>
+    <div class="custom-cursor-ring"></div>
+
+    <div class="search-overlay" id="searchOverlay" aria-modal="true" role="dialog">
+        <button class="search-close" id="searchClose">&times;</button>
+        <div class="search-container">
+            <input type="text" id="globalSearchInput" placeholder="Search Database..." autocomplete="off">
+            <div class="search-results" id="searchResults"></div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="index.html" class="logo">AOT <span>CHRONICLES</span></a>
+            
+            <div class="nav-right mobile-icons">
+                <button class="icon-btn" id="searchBtnMobile">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.3-4.3"/></svg>
+                </button>
+                <button class="hamburger">
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                </button>
+            </div>
+
+            <div class="nav-right desktop-icons">
+                <ul class="nav-links">
+                    <li><a href="index.html" class="nav-link">Home</a></li>
+                    <li><a href="characters.html" class="nav-link">Characters</a></li>
+                    <li><a href="titans.html" class="nav-link">Titans</a></li>
+                    <li><a href="story.html" class="nav-link">Story</a></li>
+                    <li><a href="world.html" class="nav-link">World</a></li>
+                    <li><a href="gallery.html" class="nav-link">Gallery</a></li>
+                </ul>
+                <div class="nav-icons">
+                    <button class="icon-btn" id="searchBtn">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.3-4.3"/></svg>
+                    </button>
+                    <button class="icon-btn" id="soundBtn">🔊</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <header class="page-header">
+        <div class="container reveal">
+            <h1>ARCHIVE <span>GALLERY</span></h1>
+            <p>High-resolution captures of monumental battles and landscapes.</p>
+        </div>
+    </header>
+
+    <main class="section">
+        <div class="container">
+            
+            <div class="controls reveal">
+                <div class="filters">
+                    <button class="filter-btn gallery-filter-btn active" data-filter="all">ALL</button>
+                    <button class="filter-btn gallery-filter-btn" data-filter="characters">CHARACTERS</button>
+                    <button class="filter-btn gallery-filter-btn" data-filter="titans">TITANS</button>
+                    <button class="filter-btn gallery-filter-btn" data-filter="battles">BATTLES</button>
+                    <button class="filter-btn gallery-filter-btn" data-filter="world">WORLD</button>
+                </div>
+            </div>
+
+            <!-- JS Generated Gallery Grid -->
+            <div class="gallery-grid" id="galleryGrid">
+                <!-- Populated by script.js -->
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Lightbox Element -->
+    <div class="lightbox" id="lightbox" role="dialog" aria-modal="true">
+        <div class="lightbox-header">
+            <span class="lightbox-counter" id="lightboxCounter">01 / 07</span>
+            <button class="lightbox-close">&times;</button>
+        </div>
+        
+        <div class="lightbox-body">
+            <button class="lightbox-nav lightbox-prev">&#10094;</button>
+            <img src="" alt="" class="lightbox-img">
+            <button class="lightbox-nav lightbox-next">&#10095;</button>
+        </div>
+    </div>
+
+    <button class="back-to-top" id="backToTop">&#8593;</button>
+
+    <footer>
+        <div class="container">
+            <h2 class="logo">AOT <span>CHRONICLES</span></h2>
+            <div class="copyright"><p>&copy; 2026 AOT Chronicles. All rights reserved.</p></div>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+</html>

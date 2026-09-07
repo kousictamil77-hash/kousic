@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="AOT Chronicles - The World Beyond the Walls">
+    <title>World | AOT Chronicles</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;800&family=Outfit:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="world-page">
+
+    <!-- Cinematic Loader -->
+    <div id="page-loader">
+        <div class="logo" style="font-family:var(--font-heading); color:var(--accent); letter-spacing:8px;">AOT <span style="color:#fff;">CHRONICLES</span></div>
+    </div>
+    <div id="scrollProgress"></div>
+    
+    <div class="custom-cursor"></div>
+    <div class="custom-cursor-ring"></div>
+
+    <div class="search-overlay" id="searchOverlay" aria-modal="true" role="dialog">
+        <button class="search-close" id="searchClose">&times;</button>
+        <div class="search-container">
+            <input type="text" id="globalSearchInput" placeholder="Search Archives..." autocomplete="off">
+            <div class="search-results" id="searchResults"></div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="index.html" class="logo">AOT <span>CHRONICLES</span></a>
+            
+            <div class="nav-right mobile-icons">
+                <button class="icon-btn" id="searchBtnMobile">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.3-4.3"/></svg>
+                </button>
+                <button class="hamburger">
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                </button>
+            </div>
+
+            <div class="nav-right desktop-icons">
+                <ul class="nav-links">
+                    <li><a href="index.html" class="nav-link">Home</a></li>
+                    <li><a href="characters.html" class="nav-link">Characters</a></li>
+                    <li><a href="titans.html" class="nav-link">Titans</a></li>
+                    <li><a href="story.html" class="nav-link">Story</a></li>
+                    <li><a href="world.html" class="nav-link active">World</a></li>
+                    <li><a href="gallery.html" class="nav-link">Gallery</a></li>
+                </ul>
+                <div class="nav-icons">
+                    <button class="icon-btn" id="searchBtn">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.3-4.3"/></svg>
+                    </button>
+                    <button class="icon-btn" id="soundBtn">🔊</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 1. Cinematic Hero -->
+    <header class="page-header world-hero parallax-bg">
+        <div class="container reveal">
+            <span class="archive-label">ARCHIVE 01 // CLASSIFIED</span>
+            <h1>THE WORLD BEYOND <span>THE WALLS</span></h1>
+            <p>Explore the lands, walls, nations and history that shaped humanity.</p>
+        </div>
+        <div class="scroll-indicator fade-in" style="position:absolute; bottom:2rem; left:50%; transform:translateX(-50%); font-family:monospace; color:var(--muted); letter-spacing:2px; font-size:0.8rem;">SCROLL TO INITIATE</div>
+    </header>
+
+    <!-- 2. The Three Walls -->
+    <section class="section" id="walls-section">
+        <div class="container">
+            <div class="section-title reveal">
+                <span class="archive-label">FIELD RECORD 02</span>
+                <h2>THE THREE <span>WALLS</span></h2>
+            </div>
+            
+            <div class="card-grid" style="grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));">
+                <!-- Maria -->
+                <article class="card reveal dossier-card">
+                    <div class="card-img"><img src="images/wall-maria.jpg" loading="lazy" alt="Wall Maria"></div>
+                    <div class="card-content">
+                        <h2 class="card-title">WALL MARIA</h2>
+                        <p class="card-role">Outer Wall | Height: 50m</p>
+                        <p class="card-desc">The outermost wall holding the largest territory. Breached in year 845, leading to catastrophic loss of life.</p>
+                        <button class="btn btn-outline">EXPLORE</button>
+                    </div>
+                </article>
+                <!-- Rose -->
+                <article class="card reveal dossier-card">
+                    <div class="card-img"><img src="images/wall-rose.jpg" loading="lazy" alt="Wall Rose"></div>
+                    <div class="card-content">
+                        <h2 class="card-title">WALL ROSE</h2>
+                        <p class="card-role">Middle Wall | Height: 50m</p>
+                        <p class="card-desc">The second line of defense. Breached at Trost but successfully sealed, marking humanity's first victory.</p>
+                        <button class="btn btn-outline">EXPLORE</button>
+                    </div>
+                </article>
+                <!-- Sina -->
+                <article class="card reveal dossier-card">
+                    <div class="card-img"><img src="images/wall-sina.jpg" loading="lazy" alt="Wall Sina"></div>
+                    <div class="card-content">
+                        <h2 class="card-title">WALL SINA</h2>
+                        <p class="card-role">Inner Wall | Height: 50m</p>
+                        <p class="card-desc">The innermost wall, housing the King, nobles, and the Military Police. Deepest safety within Paradis.</p>
+                        <button class="btn btn-outline">EXPLORE</button>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. Strategic Wall Diagram -->
+    <section class="section" style="background: rgba(10,15,10,0.8); border-top:1px solid var(--border); border-bottom:1px solid var(--border);">
+        <div class="container reveal">
+            <div style="text-align:center; margin-bottom: 3rem;">
+                <span class="archive-label">STRATEGIC MAP</span>
+                <h2 style="font-family:var(--font-heading); color:#fff; font-size:2rem; letter-spacing:4px;">PARADIS SCHEMATIC</h2>
+            </div>
+            
+            <div class="wall-diagram-container">
+                <!-- CSS drawn circles -->
+                <div class="wall-circle maria" data-wall="maria">
+                    <div class="wall-label">MARIA</div>
+                    <div class="wall-circle rose" data-wall="rose">
+                        <div class="wall-label">ROSE</div>
+                        <div class="wall-circle sina" data-wall="sina">
+                            <div class="wall-label">SINA</div>
+                            <div class="center-capital">MITRAS</div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Diagram Info Panel -->
+                <div class="diagram-info" id="diagramInfo">
+                    <h3>SELECT A REGION</h3>
+                    <p>Hover over a wall segment for strategic data.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. Locations Database -->
+    <section class="section">
+        <div class="container">
+            <div class="section-title reveal" style="display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap:1rem;">
+                <div>
+                    <span class="archive-label">LOCATION DATABASE</span>
+                    <h2>MAJOR <span>LOCATIONS</span></h2>
+                </div>
+                <div class="local-search">
+                    <input type="text" id="locationSearchInput" placeholder="Search locations...">
+                </div>
+            </div>
+            
+            <div class="card-grid" id="locationGrid">
+                <!-- Generated by JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. Split Screen (Inside vs Outside) -->
+    <section class="split-section">
+        <div class="split-pane left-pane reveal-left">
+            <div class="pane-content">
+                <span class="archive-label">ISOLATION</span>
+                <h2>INSIDE THE WALLS</h2>
+                <p>A society forged in fear, restricted by royal decree and massive walls. Relying on ODM gear, gas, and blade technology to combat the perceived extinction of humanity.</p>
+                <ul class="dossier-list">
+                    <li>3 Military Branches</li>
+                    <li>Feudal Society</li>
+                    <li>Ignorance of the Outside</li>
+                </ul>
+            </div>
+        </div>
+        <div class="split-pane right-pane reveal-right">
+            <div class="pane-content">
+                <span class="archive-label">REALITY</span>
+                <h2>OUTSIDE THE WALLS</h2>
+                <p>A rapidly advancing world built on hatred. Nations wage war with dreadnoughts, airships, and anti-titan artillery, while oppressing Eldians in internment zones.</p>
+                <ul class="dossier-list">
+                    <li>Advanced Technology (Airships, Radios)</li>
+                    <li>Global Nations (Marley, Mid-East)</li>
+                    <li>Titan Warfare as Strategy</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. Nations -->
+    <section class="section">
+        <div class="container">
+            <div class="section-title reveal">
+                <span class="archive-label">GLOBAL POWERS</span>
+                <h2>THE WORLD'S <span>NATIONS</span></h2>
+            </div>
+            <div class="card-grid">
+                <article class="card reveal dossier-card">
+                    <div class="card-content">
+                        <h2 class="card-title">MARLEY</h2>
+                        <p class="card-desc">The dominant global superpower. Utilizes the Power of the Titans through their Warrior Unit to conquer other nations, while keeping Eldians in internment zones.</p>
+                    </div>
+                </article>
+                <article class="card reveal dossier-card">
+                    <div class="card-content">
+                        <h2 class="card-title">PARADIS</h2>
+                        <p class="card-desc">The isolated island nation where King Fritz fled. Demonized by the world as the "Island of Devils," sitting on massive reserves of Iceburst Stone.</p>
+                    </div>
+                </article>
+                <article class="card reveal dossier-card">
+                    <div class="card-content">
+                        <h2 class="card-title">HIZURU</h2>
+                        <p class="card-desc">An allied nation of the Eldian Empire prior to the Great Titan War. Now seeking to re-establish ties with Paradis to monopolize Iceburst Stone.</p>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- 7. Interactive Map -->
+    <section class="section" style="background: #050505;">
+        <div class="container reveal">
+            <div class="section-title text-center">
+                <span class="archive-label">TACTICAL OVERVIEW</span>
+                <h2>INTERACTIVE <span>WORLD MAP</span></h2>
+            </div>
+            
+            <div class="interactive-map-container">
+                <div class="map-bg">
+                    <!-- Fictional map representation -->
+                    <div class="map-marker pulse" style="top: 30%; left: 60%;" data-location="marley">
+                        <span class="marker-label">MARLEY</span>
+                    </div>
+                    <div class="map-marker pulse" style="top: 45%; left: 65%;" data-location="liberio">
+                        <span class="marker-label">LIBERIO</span>
+                    </div>
+                    <div class="map-marker pulse" style="top: 20%; left: 80%;" data-location="paradis">
+                        <span class="marker-label">PARADIS</span>
+                    </div>
+                    <div class="map-marker pulse" style="top: 25%; left: 78%;" data-location="shiganshina">
+                        <span class="marker-label">SHIGANSHINA</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 8. History Timeline -->
+    <section class="section">
+        <div class="container">
+            <div class="section-title text-center reveal">
+                <span class="archive-label">HISTORICAL RECORD</span>
+                <h2>HISTORY OF <span>THE WORLD</span></h2>
+            </div>
+            
+            <div class="world-timeline">
+                <div class="wt-line"></div>
+                <div class="wt-item reveal-left">
+                    <div class="wt-content">
+                        <h3>ORIGIN OF TITANS</h3>
+                        <p>Ymir Fritz comes into contact with the "source of all living matter," gaining the Power of the Titans.</p>
+                    </div>
+                </div>
+                <div class="wt-item reveal-right">
+                    <div class="wt-content">
+                        <h3>ELDIAN EMPIRE</h3>
+                        <p>The Eldian Empire uses the Titans to conquer the continent, devastating ancient Marley.</p>
+                    </div>
+                </div>
+                <div class="wt-item reveal-left">
+                    <div class="wt-content">
+                        <h3>GREAT TITAN WAR</h3>
+                        <p>King Karl Fritz plots with the Tybur family to orchestrate Marley's rise and the collapse of the Eldian Empire.</p>
+                    </div>
+                </div>
+                <div class="wt-item reveal-right">
+                    <div class="wt-content">
+                        <h3>FOUNDING OF WALLS</h3>
+                        <p>King Fritz retreats to Paradis, using millions of Colossal Titans to build three concentric walls.</p>
+                    </div>
+                </div>
+                <div class="wt-item reveal-left">
+                    <div class="wt-content">
+                        <h3>FALL OF SHIGANSHINA</h3>
+                        <p>Year 845. Marley sends the Warrior Unit to breach Wall Maria and reclaim the Founding Titan.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Dynamic Modal -->
+    <div class="modal-overlay" id="dynamicModal" role="dialog" aria-modal="true">
+        <div class="modal-content"></div>
+    </div>
+
+    <button class="back-to-top" id="backToTop">&#8593;</button>
+
+    <footer>
+        <div class="container">
+            <h2 class="logo reveal">AOT <span>CHRONICLES</span></h2>
+            <div class="copyright reveal"><p>&copy; 2026 AOT Chronicles. Classified Archive.</p></div>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+</html>

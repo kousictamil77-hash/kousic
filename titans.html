@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="AOT Chronicles - The Nine Titans Database">
+    <title>Titans | AOT Chronicles</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;800&family=Outfit:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Cinematic Loader -->
+    <div id="page-loader">
+        <div class="logo" style="font-family:var(--font-heading); color:var(--accent); letter-spacing:8px;">AOT <span style="color:#fff;">CHRONICLES</span></div>
+    </div>
+    <div id="scrollProgress"></div>
+    
+    <div class="custom-cursor"></div>
+    <div class="custom-cursor-ring"></div>
+
+    <div class="search-overlay" id="searchOverlay" aria-modal="true" role="dialog">
+        <button class="search-close" id="searchClose">&times;</button>
+        <div class="search-container">
+            <input type="text" id="globalSearchInput" placeholder="Search Database..." autocomplete="off">
+            <div class="search-results" id="searchResults"></div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="index.html" class="logo">AOT <span>CHRONICLES</span></a>
+            
+            <div class="nav-right mobile-icons">
+                <button class="icon-btn" id="searchBtnMobile">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.3-4.3"/></svg>
+                </button>
+                <button class="hamburger">
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                </button>
+            </div>
+
+            <div class="nav-right desktop-icons">
+                <ul class="nav-links">
+                    <li><a href="index.html" class="nav-link">Home</a></li>
+                    <li><a href="characters.html" class="nav-link">Characters</a></li>
+                    <li><a href="titans.html" class="nav-link">Titans</a></li>
+                    <li><a href="story.html" class="nav-link">Story</a></li>
+                    <li><a href="world.html" class="nav-link">World</a></li>
+                    <li><a href="gallery.html" class="nav-link">Gallery</a></li>
+                </ul>
+                <div class="nav-icons">
+                    <button class="icon-btn" id="searchBtn">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.3-4.3"/></svg>
+                    </button>
+                    <button class="icon-btn" id="soundBtn">🔊</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <header class="page-header">
+        <div class="container reveal">
+            <span style="font-family:var(--font-heading); color:var(--military-green-light); letter-spacing:4px; font-size:1rem; display:block; margin-bottom:1rem;">THE NINE</span>
+            <h1>THE NINE <span>TITANS</span></h1>
+            <p>The powers that shaped the history of Eldia and Marley. Passed down through generations of inheritors.</p>
+        </div>
+    </header>
+
+    <main class="section">
+        <div class="container">
+            
+            <!-- Featured Section -->
+            <div class="featured-titan reveal">
+                <div class="featured-img">
+                    <img src="images/attack-titan.jpg" alt="Attack Titan" loading="lazy">
+                </div>
+                <div class="featured-info">
+                    <span class="label">FEATURED TITAN</span>
+                    <h2>ATTACK TITAN</h2>
+                    <div class="featured-stats">
+                        <div class="stat">
+                            <span>HEIGHT</span>
+                            <span>15 m</span>
+                        </div>
+                        <div class="stat">
+                            <span>ROLE</span>
+                            <span>COMBAT</span>
+                        </div>
+                    </div>
+                    <button class="btn btn-outline open-modal-btn" data-type="titan" data-id="1" style="align-self:flex-start;">VIEW DETAILS</button>
+                </div>
+            </div>
+
+            <!-- Controls (Search, Filter, Sort) -->
+            <div class="controls-header reveal">
+                <div class="local-search" style="flex:1; min-width:300px; margin:0;">
+                    <label for="titanSearchInput" class="sr-only">Search titans</label>
+                    <input type="text" id="titanSearchInput" placeholder="Search Titans..." autocomplete="off">
+                </div>
+                
+                <div class="sort-container">
+                    <label for="titanSort">SORT BY</label>
+                    <select id="titanSort" class="sort-select">
+                        <option value="default">Default</option>
+                        <option value="az">Name A-Z</option>
+                        <option value="za">Name Z-A</option>
+                        <option value="h_low">Height: Low → High</option>
+                        <option value="h_high">Height: High → Low</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="filters reveal" style="margin-bottom: 3rem; display:flex; flex-wrap:wrap; gap:1rem;">
+                <button class="filter-btn titan-filter-btn active" data-filter="all">ALL</button>
+                <button class="filter-btn titan-filter-btn" data-filter="combat">COMBAT</button>
+                <button class="filter-btn titan-filter-btn" data-filter="defense">DEFENSE</button>
+                <button class="filter-btn titan-filter-btn" data-filter="intelligence">INTELLIGENCE</button>
+                <button class="filter-btn titan-filter-btn" data-filter="power">POWER</button>
+                <button class="filter-btn titan-filter-btn" data-filter="mobility">MOBILITY</button>
+            </div>
+
+            <!-- JS Generated Grid -->
+            <div class="card-grid" id="titanGrid">
+                <!-- Populated by script.js -->
+            </div>
+
+            <!-- Comparison Table -->
+            <div class="comparison-section reveal">
+                <h2 style="font-family:var(--font-heading); color:#fff; letter-spacing:3px; margin-bottom:2rem; font-size:2rem;">TITAN <span>COMPARISON</span></h2>
+                <div class="table-wrapper">
+                    <table class="titan-table">
+                        <thead>
+                            <tr>
+                                <th>TITAN</th>
+                                <th>HEIGHT</th>
+                                <th>CATEGORY</th>
+                                <th>KEY ABILITY</th>
+                            </tr>
+                        </thead>
+                        <tbody id="titanTableBody">
+                            <!-- Populated by JS -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Dynamic Modal -->
+    <div class="modal-overlay" id="dynamicModal" role="dialog" aria-modal="true">
+        <div class="modal-content">
+            <!-- Populated by script.js -->
+        </div>
+    </div>
+
+    <button class="back-to-top" id="backToTop">&#8593;</button>
+
+    <footer>
+        <div class="container">
+            <h2 class="logo">AOT <span>CHRONICLES</span></h2>
+            <div class="copyright"><p>&copy; 2026 AOT Chronicles. All rights reserved.</p></div>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="AOT Chronicles - Premium cinematic fan experience exploring the world of Attack on Titan. Version 3.0.">
+    <title>AOT Chronicles | Home</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;800&family=Outfit:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Cinematic Loader -->
+    <div id="page-loader">
+        <div class="logo" style="font-family:var(--font-heading); color:var(--accent); letter-spacing:8px;">AOT <span style="color:#fff;">CHRONICLES</span></div>
+    </div>
+    <!-- Upgraded Full-Screen Cinematic AOT Intro Screen -->
+    <div id="entryScreen" class="entry-screen">
+        <!-- Layer 1: Animated AOT Cinematic Camera Background -->
+        <div class="intro-bg-container">
+            <div class="intro-bg-image" style="background-image: url('images/aot-cinematic-bg.jpg');"></div>
+        </div>
+
+        <!-- Layer 2: Dark Overlay & Atmospheric Color Grading -->
+        <div class="intro-dark-overlay"></div>
+
+        <!-- Layer 3: Moving Fog & Smoke Layers (3 Layers) -->
+        <div class="intro-fog-layer fog-1"></div>
+        <div class="intro-fog-layer fog-2"></div>
+        <div class="intro-fog-layer fog-3"></div>
+
+        <!-- Layer 4: Cinematic Light Sweep Overlay -->
+        <div class="cinematic-light-sweep"></div>
+
+        <!-- Layer 5: Film Grain -->
+        <div class="intro-grain-layer"></div>
+
+        <!-- Layer 6: Dynamic Dust / Floating Ash / Embers Particles Canvas -->
+        <canvas id="introParticlesCanvas" class="intro-particles-canvas"></canvas>
+
+        <!-- Layer 7: Dark Vignette -->
+        <div class="intro-vignette"></div>
+
+        <!-- Layer 8: Staggered UI Layer (Archive Info, Title, Subtitles, Enter Action) -->
+        <div class="entry-content">
+            <!-- Upper Left Archive Information -->
+            <div class="intro-archive-info top-left">
+                <span class="archive-code">ARCHIVE 001</span>
+                <span class="archive-class">CLASSIFICATION: TOP SECRET</span>
+                <span class="archive-status">STATUS: ACTIVE</span>
+            </div>
+            
+            <!-- Upper Right Military Categories -->
+            <div class="intro-archive-info top-right">
+                <span class="archive-tags">WALLS • TITANS • HUMANITY</span>
+            </div>
+
+            <!-- Central Title Block -->
+            <div class="intro-title-block">
+                <h1 class="intro-main-title">
+                    <span class="word-attack">ATTACK</span>
+                    <span class="word-on">ON</span>
+                    <span class="word-titan">TITAN</span>
+                </h1>
+                <div class="intro-brand-heading">CHRONICLES</div>
+                <p class="intro-main-subtitle">THE WORLD BEYOND THE WALLS</p>
+            </div>
+
+            <!-- Interactive Action Area -->
+            <div class="intro-actions">
+                <button id="enterArchiveBtn" class="btn btn-entry intro-enter-btn">ENTER ARCHIVE</button>
+                <div class="intro-click-text">CLICK TO BEGIN</div>
+            </div>
+
+            <!-- Skip Button -->
+            <button id="skipIntroBtn" class="skip-intro-btn">SKIP INTRO</button>
+        </div>
+    </div>
+
+    <div id="scrollProgress"></div>
+    
+    <div class="custom-cursor"></div>
+    <div class="custom-cursor-ring"></div>
+
+    <!-- Global Search Overlay -->
+    <div class="search-overlay" id="searchOverlay" aria-modal="true" role="dialog" aria-label="Global Search">
+        <button class="search-close" id="searchClose" aria-label="Close search">&times;</button>
+        <div class="search-container">
+            <label for="globalSearchInput" class="sr-only">Search database</label>
+            <input type="text" id="globalSearchInput" placeholder="Search Database..." autocomplete="off">
+            <div class="search-results" id="searchResults"></div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar" aria-label="Main Navigation">
+        <div class="container">
+            <a href="index.html" class="logo" aria-label="AOT Chronicles Home">AOT <span>CHRONICLES</span></a>
+            
+            <div class="nav-right mobile-icons">
+                <button class="icon-btn" id="searchBtnMobile" aria-label="Open search">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.3-4.3"/></svg>
+                </button>
+                <button class="hamburger" aria-label="Open mobile menu" aria-expanded="false">
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                </button>
+            </div>
+
+            <div class="nav-right desktop-icons">
+                <ul class="nav-links">
+                    <li><a href="index.html" class="nav-link">Home</a></li>
+                    <li><a href="characters.html" class="nav-link">Characters</a></li>
+                    <li><a href="titans.html" class="nav-link">Titans</a></li>
+                    <li><a href="story.html" class="nav-link">Story</a></li>
+                    <li><a href="world.html" class="nav-link">World</a></li>
+                    <li><a href="gallery.html" class="nav-link">Gallery</a></li>
+                </ul>
+                <div class="nav-icons">
+                    <button class="icon-btn" id="searchBtn" aria-label="Open search">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.3-4.3"/></svg>
+                    </button>
+                    <button class="icon-btn" id="soundBtn" aria-label="Toggle sound">🔊</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section (Cinematic V3) -->
+    <header class="hero">
+        <div class="hero-bg" aria-hidden="true"></div>
+        <div class="fog-layer fog-1" aria-hidden="true"></div>
+        <div class="fog-layer fog-2" aria-hidden="true"></div>
+        <div class="hero-overlay" aria-hidden="true"></div>
+        
+        <!-- HUD UI -->
+        <div class="hero-hud">
+            <span><strong>STATUS:</strong> ACTIVE</span>
+            <span><strong>LOCATION:</strong> WITHIN THE WALLS</span>
+            <span><strong>MISSION:</strong> SURVIVAL</span>
+        </div>
+        
+        <div class="hero-content">
+            <h1 class="reveal">ATTACK<br>ON TITAN</h1>
+            <p class="subtitle reveal" style="transition-delay:0.2s">THE WORLD BEYOND THE WALLS</p>
+            <div class="hero-btns reveal" style="transition-delay:0.4s">
+                <a href="#expedition" class="btn btn-accent">BEGIN EXPEDITION</a>
+            </div>
+        </div>
+
+        <div class="scroll-indicator reveal" style="transition-delay:0.6s">
+            <span>SCROLL</span>
+            <div class="scroll-line"></div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Interactive Expedition Section -->
+        <section class="section" id="expedition">
+            <div class="container">
+                <h2 class="section-title reveal">BEGIN YOUR <span>EXPEDITION</span></h2>
+                
+                <div class="expedition-grid">
+                    <a href="characters.html" class="expedition-card reveal">
+                        <span class="expedition-num">01</span>
+                        <svg class="expedition-icon" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+                        <h3>CHARACTERS</h3>
+                        <p>Military records of humanity's finest soldiers and commanders.</p>
+                        <span class="btn-outline" style="padding:0.5rem 1.5rem; font-size:0.8rem;">EXPLORE</span>
+                    </a>
+                    
+                    <a href="titans.html" class="expedition-card reveal">
+                        <span class="expedition-num">02</span>
+                        <svg class="expedition-icon" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+                        <h3>TITANS</h3>
+                        <p>Classified intel on the terrifying Nine Titan Shifters.</p>
+                        <span class="btn-outline" style="padding:0.5rem 1.5rem; font-size:0.8rem;">EXPLORE</span>
+                    </a>
+                    
+                    <a href="story.html" class="expedition-card reveal">
+                        <span class="expedition-num">03</span>
+                        <svg class="expedition-icon" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg>
+                        <h3>STORY</h3>
+                        <p>A chronological archive of the events that changed the world.</p>
+                        <span class="btn-outline" style="padding:0.5rem 1.5rem; font-size:0.8rem;">EXPLORE</span>
+                    </a>
+                    
+                    <a href="gallery.html" class="expedition-card reveal">
+                        <span class="expedition-num">04</span>
+                        <svg class="expedition-icon" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg>
+                        <h3>GALLERY</h3>
+                        <p>High-resolution captures of monumental battles and landscapes.</p>
+                        <span class="btn-outline" style="padding:0.5rem 1.5rem; font-size:0.8rem;">EXPLORE</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Division Selector -->
+        <section class="section division-section">
+            <div class="container">
+                <h2 class="section-title reveal">WHICH DIVISION WOULD YOU <span>JOIN?</span></h2>
+                
+                <div class="division-options reveal">
+                    <button class="div-btn" data-div="survey">SURVEY CORPS</button>
+                    <button class="div-btn" data-div="garrison">GARRISON</button>
+                    <button class="div-btn" data-div="mp">MILITARY POLICE</button>
+                </div>
+                
+                <!-- Titan Size Comparison Section -->
+        <section class="section titan-comparison-section" id="titan-comparison">
+            <div class="container">
+                <div class="section-header reveal">
+                    <span class="section-tag">CLASSIFIED FIELD MEASUREMENT</span>
+                    <h2 class="section-title">TITAN SIZE <span>COMPARISON</span></h2>
+                    <p class="section-desc">Proportional biological field profiles relative to Wall Maria (50m) and humanity (1.7m).</p>
+                </div>
+
+                <div class="titan-scale-viewport reveal" id="titanScaleViewport">
+                    <!-- Ground Grid & Height Markers -->
+                    <div class="scale-grid-line grid-60m"><span>60M (Colossal)</span></div>
+                    <div class="scale-grid-line grid-50m"><span>50M (Wall Maria)</span></div>
+                    <div class="scale-grid-line grid-30m"><span>30M</span></div>
+                    <div class="scale-grid-line grid-15m"><span>15M</span></div>
+                    <div class="scale-grid-line grid-0m"><span>0M (Ground)</span></div>
+
+                    <!-- Atmospheric Fog Layer behind Titans -->
+                    <div class="titan-scale-fog"></div>
+
+                    <!-- Proportional Titan Figures Container -->
+                    <div class="titan-figures-container" id="titanFiguresContainer">
+                        <!-- Human Baseline Reference -->
+                        <div class="titan-figure human-figure" style="--titan-h: 1.7;" data-name="Human Scout" data-height="1.7m" data-users="Survey Corps Soldiers" data-abilities="ODM Gear Mastery, High Speed Combat" data-class="Standard Military">
+                            <div class="titan-bar"><div class="human-silhouette"></div></div>
+                            <div class="titan-fig-label">
+                                <span class="fig-name">Human</span>
+                                <span class="fig-height">1.7m</span>
+                            </div>
+                        </div>
+
+                        <!-- Cart Titan -->
+                        <div class="titan-figure" style="--titan-h: 4;" data-name="Cart Titan" data-height="4m" data-users="Pieck Finger" data-abilities="Extreme Endurance, Quadrupedal Mobility, Speech" data-class="Support / Utility">
+                            <div class="titan-bar"></div>
+                            <div class="titan-fig-label">
+                                <span class="fig-name">Cart</span>
+                                <span class="fig-height">4m</span>
+                            </div>
+                        </div>
+
+                        <!-- Jaw Titan -->
+                        <div class="titan-figure" style="--titan-h: 5;" data-name="Jaw Titan" data-height="5m" data-users="Falco Grice, Ymir, Marcel Galliard, Porco Galliard" data-abilities="Crushing Jaw Bite, Extreme Speed & Agility, Climbing" data-class="Assault / Speed">
+                            <div class="titan-bar"></div>
+                            <div class="titan-fig-label">
+                                <span class="fig-name">Jaw</span>
+                                <span class="fig-height">5m</span>
+                            </div>
+                        </div>
+
+                        <!-- Female Titan -->
+                        <div class="titan-figure" style="--titan-h: 14;" data-name="Female Titan" data-height="14m" data-users="Annie Leonhart" data-abilities="Selective Hardening, High Endurance, Attract Pure Titans" data-class="Versatile Combat">
+                            <div class="titan-bar"></div>
+                            <div class="titan-fig-label">
+                                <span class="fig-name">Female</span>
+                                <span class="fig-height">14m</span>
+                            </div>
+                        </div>
+
+                        <!-- Attack Titan -->
+                        <div class="titan-figure" style="--titan-h: 15;" data-name="Attack Titan" data-height="15m" data-users="Eren Yeager, Grisha Yeager, Eren Kruger" data-abilities="Future Memory Inheritance, High Physical Strength, Indomitable Will" data-class="Frontline Combat">
+                            <div class="titan-bar"></div>
+                            <div class="titan-fig-label">
+                                <span class="fig-name">Attack</span>
+                                <span class="fig-height">15m</span>
+                            </div>
+                        </div>
+
+                        <!-- Armored Titan -->
+                        <div class="titan-figure" style="--titan-h: 15;" data-name="Armored Titan" data-height="15m" data-users="Reiner Braun" data-abilities="Full Body Armored Plates, Ramming Siege Ability" data-class="Heavy Defensive">
+                            <div class="titan-bar"></div>
+                            <div class="titan-fig-label">
+                                <span class="fig-name">Armored</span>
+                                <span class="fig-height">15m</span>
+                            </div>
+                        </div>
+
+                        <!-- War Hammer Titan -->
+                        <div class="titan-figure" style="--titan-h: 15;" data-name="War Hammer Titan" data-height="15m" data-users="Lara Tybur, Eren Yeager" data-abilities="Structural Hardening, Weapon Generation, Remote Cable Operation" data-class="Strategic Offense">
+                            <div class="titan-bar"></div>
+                            <div class="titan-fig-label">
+                                <span class="fig-name">War Hammer</span>
+                                <span class="fig-height">15m</span>
+                            </div>
+                        </div>
+
+                        <!-- Beast Titan -->
+                        <div class="titan-figure" style="--titan-h: 17;" data-name="Beast Titan" data-height="17m" data-users="Zeke Yeager, Tom Ksaver" data-abilities="Long-Range Artillery Pitching, Royal Blood Pure Titan Command" data-class="Heavy Long-Range">
+                            <div class="titan-bar"></div>
+                            <div class="titan-fig-label">
+                                <span class="fig-name">Beast</span>
+                                <span class="fig-height">17m</span>
+                            </div>
+                        </div>
+
+                        <!-- Colossal Titan -->
+                        <div class="titan-figure colossal-figure" style="--titan-h: 60;" data-name="Colossal Titan" data-height="60m" data-users="Armin Arlert, Bertholdt Hoover" data-abilities="Explosive Transformation Blast, Scalding Steam Emission, Massive Size" data-class="God of Destruction">
+                            <div class="titan-bar"></div>
+                            <div class="titan-fig-label">
+                                <span class="fig-name">Colossal</span>
+                                <span class="fig-height">60m</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Titan Classified Details Panel -->
+                <div class="titan-intel-drawer" id="titanIntelDrawer">
+                    <div class="intel-header">
+                        <span class="intel-tag" id="intelClass">CLASSIFICATION: STANDBY</span>
+                        <h3 class="intel-title" id="intelName">SELECT A TITAN TO VIEW FIELD INTEL</h3>
+                    </div>
+                    <div class="intel-grid">
+                        <div class="intel-item">
+                            <span class="intel-label">ESTIMATED HEIGHT</span>
+                            <span class="intel-value" id="intelHeight">--</span>
+                        </div>
+                        <div class="intel-item">
+                            <span class="intel-label">KNOWN SHIFTERS</span>
+                            <span class="intel-value" id="intelUsers">--</span>
+                        </div>
+                        <div class="intel-item full-width">
+                            <span class="intel-label">PRIMARY ABILITIES</span>
+                            <span class="intel-value" id="intelAbilities">--</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <button class="back-to-top" id="backToTop" aria-label="Scroll to top">&#8593;</button>
+
+    <footer>
+        <div class="container">
+            <h2 class="logo">AOT <span>CHRONICLES</span></h2>
+            <nav aria-label="Footer Navigation" class="footer-nav">
+                <a href="index.html">Home</a>
+                <a href="characters.html">Characters</a>
+                <a href="titans.html">Titans</a>
+                <a href="story.html">Story</a>
+                <a href="gallery.html">Gallery</a>
+            </nav>
+            <div class="copyright"><p>&copy; 2026 AOT Chronicles (Version 3.0). All rights reserved.</p></div>
+        </div>
+    </footer>
+
+    <!-- Global Floating Music Player Widget -->
+    <div id="globalMusicPlayer" class="music-player-widget">
+        <div class="mp-content">
+            <div class="mp-info">
+                <span class="mp-icon">🎵</span>
+                <div class="mp-text">
+                    <span class="mp-track">GUREN NO YUMIYA</span>
+                    <span class="mp-artist">Linked Horizon</span>
+                </div>
+            </div>
+
+            <!-- Audio Equalizer Visualizer -->
+            <div class="mp-visualizer">
+                <span class="bar bar-1"></span>
+                <span class="bar bar-2"></span>
+                <span class="bar bar-3"></span>
+                <span class="bar bar-4"></span>
+            </div>
+
+            <div class="mp-controls">
+                <button id="mpPrevBtn" class="mp-btn" aria-label="Previous Track">⏮</button>
+                <button id="mpPlayBtn" class="mp-btn mp-play-btn" aria-label="Play or Pause">▶</button>
+                <button id="mpNextBtn" class="mp-btn" aria-label="Next Track">⏭</button>
+                <button id="mpMuteBtn" class="mp-btn" aria-label="Toggle Mute">🔊</button>
+            </div>
+
+            <div class="mp-slider-container">
+                <input type="range" id="mpVolumeSlider" min="0" max="1" step="0.05" value="0.4" aria-label="Volume">
+            </div>
+        </div>
+
+        <button id="mpMinimizeBtn" class="mp-minimize-btn" aria-label="Minimize Music Player">−</button>
+    </div>
+
+    <script src="js/script.js"></script>
+</body>
+</html>

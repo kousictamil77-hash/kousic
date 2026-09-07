@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="AOT Chronicles - Classified Personnel Archive">
+    <title>Characters | AOT Chronicles</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;800&family=Outfit:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="characters-page">
+
+    <!-- Cinematic Loader -->
+    <div id="page-loader">
+        <div class="logo" style="font-family:var(--font-heading); color:var(--accent); letter-spacing:8px;">AOT <span style="color:#fff;">CHRONICLES</span></div>
+    </div>
+    <div id="scrollProgress"></div>
+    
+    <div class="custom-cursor"></div>
+    <div class="custom-cursor-ring"></div>
+
+    <div class="search-overlay" id="searchOverlay" aria-modal="true" role="dialog">
+        <button class="search-close" id="searchClose">&times;</button>
+        <div class="search-container">
+            <input type="text" id="globalSearchInput" placeholder="Search Archives..." autocomplete="off">
+            <div class="search-results" id="searchResults"></div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="index.html" class="logo">AOT <span>CHRONICLES</span></a>
+            
+            <div class="nav-right mobile-icons">
+                <button class="icon-btn" id="searchBtnMobile">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.3-4.3"/></svg>
+                </button>
+                <button class="hamburger">
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                </button>
+            </div>
+
+            <div class="nav-right desktop-icons">
+                <ul class="nav-links">
+                    <li><a href="index.html" class="nav-link">Home</a></li>
+                    <li><a href="characters.html" class="nav-link active">Characters</a></li>
+                    <li><a href="titans.html" class="nav-link">Titans</a></li>
+                    <li><a href="story.html" class="nav-link">Story</a></li>
+                    <li><a href="world.html" class="nav-link">World</a></li>
+                    <li><a href="gallery.html" class="nav-link">Gallery</a></li>
+                </ul>
+                <div class="nav-icons">
+                    <button class="icon-btn" id="searchBtn">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.3-4.3"/></svg>
+                    </button>
+                    <button class="icon-btn" id="soundBtn">🔊</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 1. Character Archive Hero -->
+    <header class="page-header characters-hero parallax-bg" style="background-image: url('images/characters-bg.jpg');">
+        <div class="container reveal">
+            <span class="archive-label">ARCHIVE 002</span>
+            <span class="archive-label" style="margin-left:0.5rem; border-color:var(--military-green);">PERSONNEL DATABASE</span>
+            <span class="archive-label" style="margin-left:0.5rem; border-color:var(--military-green-light); color:var(--military-green-light);">CLASSIFIED RECORD</span>
+            
+            <h1 style="margin-top: 1rem;">CHARACTER <span>ARCHIVE</span></h1>
+            <p>Those who fought for humanity, freedom, and survival.</p>
+        </div>
+        <div class="scroll-indicator fade-in" style="position:absolute; bottom:2rem; left:50%; transform:translateX(-50%); font-family:monospace; color:var(--muted); letter-spacing:2px; font-size:0.8rem;">SCROLL TO INITIALIZE</div>
+    </header>
+
+    <!-- 2. Featured Character -->
+    <section class="section" style="background: rgba(10,15,10,0.8); border-top:1px solid var(--border); border-bottom:1px solid var(--border); overflow:hidden;">
+        <div class="container" style="position:relative; z-index:2;">
+            <div class="section-title reveal">
+                <span class="archive-label">FEATURED PERSONNEL</span>
+            </div>
+            
+            <div style="display:flex; flex-wrap:wrap; gap:4rem; align-items:center;">
+                <div class="reveal-left" style="flex:1; min-width:300px;">
+                    <h2 style="font-family:var(--font-heading); color:var(--accent); font-size:clamp(2.5rem, 5vw, 4rem); line-height:1;">LEVI<br><span style="color:#fff;">ACKERMAN</span></h2>
+                    <p style="font-family:monospace; color:var(--military-green-light); font-size:1.2rem; margin: 1rem 0;">CAPTAIN | SURVEY CORPS</p>
+                    <p style="color:var(--text); font-size:1.1rem; line-height:1.8; margin-bottom:2rem;">Known as humanity's strongest soldier. Captain of the Special Operations Squad. His combat ability is said to be equivalent to an entire brigade.</p>
+                    <button class="btn btn-outline open-modal-btn" data-type="character-v2" data-id="c4">VIEW PROFILE</button>
+                </div>
+                <div class="reveal-right" style="flex:1; min-width:300px; text-align:center;">
+                    <img src="images/levi.jpg" alt="Levi Ackerman" style="max-width:100%; border:1px solid var(--border); filter:grayscale(30%); transform:scale(1.05); transition:transform 0.5s ease;" onmouseover="this.style.transform='scale(1)'" onmouseout="this.style.transform='scale(1.05)'">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. Character Database Controls -->
+    <section class="section" style="padding-bottom: 0;">
+        <div class="container reveal">
+            <div style="display:flex; justify-content:space-between; flex-wrap:wrap; align-items:flex-end; gap:2rem; margin-bottom:2rem; border-bottom:1px solid var(--border); padding-bottom:1rem;">
+                <!-- Search -->
+                <div class="personnel-search" style="flex:1; min-width:280px;">
+                    <input type="text" id="characterSearch" placeholder="SEARCH PERSONNEL..." style="width:100%; padding:0.8rem; background:rgba(255,255,255,0.05); border:1px solid var(--border); color:#fff; font-family:monospace; font-size:1rem; outline:none;" autocomplete="off">
+                </div>
+                
+                <!-- Filters -->
+                <div class="personnel-filters" style="display:flex; gap:0.5rem; flex-wrap:wrap;">
+                    <button class="archive-label filter-btn active" data-filter="all" style="cursor:pointer; background:transparent;">ALL</button>
+                    <button class="archive-label filter-btn" data-filter="survey corps" style="cursor:pointer; background:transparent;">SURVEY CORPS</button>
+                    <button class="archive-label filter-btn" data-filter="warrior unit" style="cursor:pointer; background:transparent;">WARRIOR UNIT</button>
+                    <button class="archive-label filter-btn" data-filter="royalty" style="cursor:pointer; background:transparent;">ROYAL BLOODLINE</button>
+                    <button class="archive-label filter-btn" data-filter="other" style="cursor:pointer; background:transparent;">OTHER PERSONNEL</button>
+                </div>
+            </div>
+            <div id="characterCount" style="font-family:monospace; color:var(--military-green-light); font-size:0.9rem; letter-spacing:2px; margin-bottom:2rem;">16 RECORDS FOUND</div>
+        </div>
+    </section>
+
+    <!-- 4. Character Grid -->
+    <section class="section" style="padding-top: 1rem;">
+        <div class="container">
+            <div class="card-grid" id="charactersGrid" style="grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));">
+                <!-- Injected via script.js -->
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. Quote Section -->
+    <section class="section">
+        <div class="container reveal">
+            <div style="text-align:center; padding: 4rem 2rem; border:1px solid var(--border); background:rgba(255,255,255,0.02);">
+                <span class="archive-label">ARCHIVE NOTE</span>
+                <blockquote style="margin: 2rem 0; font-family:var(--font-heading); font-size:clamp(1.5rem, 3vw, 2.5rem); color:#fff; letter-spacing:2px; line-height:1.4;">
+                    "Every choice leaves a mark on history."
+                </blockquote>
+            </div>
+        </div>
+    </section>
+
+    <!-- Dynamic Modal -->
+    <div class="modal-overlay" id="dynamicModal" role="dialog" aria-modal="true">
+        <div class="modal-content"></div>
+    </div>
+
+    <button class="back-to-top" id="backToTop">&#8593;</button>
+
+    <footer>
+        <div class="container">
+            <h2 class="logo reveal">AOT <span>CHRONICLES</span></h2>
+            <div class="copyright reveal"><p>&copy; 2026 AOT Chronicles. Classified Archive.</p></div>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+</html>

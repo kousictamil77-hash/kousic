@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="AOT Chronicles - Titan Battle Experience">
+    <title>Titan Battle | AOT Chronicles</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;800&family=Outfit:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="battle-page">
+    
+    <div class="custom-cursor"></div>
+    <div class="custom-cursor-ring"></div>
+
+    <div class="search-overlay" id="searchOverlay" aria-modal="true" role="dialog">
+        <button class="search-close" id="searchClose">&times;</button>
+        <div class="search-container">
+            <input type="text" id="globalSearchInput" placeholder="Search Database..." autocomplete="off">
+            <div class="search-results" id="searchResults"></div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="index.html" class="logo">AOT <span>CHRONICLES</span></a>
+            
+            <div class="nav-right mobile-icons">
+                <button class="icon-btn" id="searchBtnMobile">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.3-4.3"/></svg>
+                </button>
+                <button class="hamburger">
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                </button>
+            </div>
+
+            <div class="nav-right desktop-icons">
+                <ul class="nav-links">
+                    <li><a href="index.html" class="nav-link">Home</a></li>
+                    <li><a href="characters.html" class="nav-link">Characters</a></li>
+                    <li><a href="titans.html" class="nav-link">Titans</a></li>
+                    <li><a href="story.html" class="nav-link">Story</a></li>
+                    <li><a href="gallery.html" class="nav-link">Gallery</a></li>
+                    <li><a href="titan-battle.html" class="nav-link active">Battle</a></li>
+                </ul>
+                <div class="nav-icons">
+                    <button class="icon-btn" id="searchBtn">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.3-4.3"/></svg>
+                    </button>
+                    <button class="icon-btn" id="soundBtn">🔊</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Battle Container -->
+    <main class="section" id="titanBattlePage" style="padding-top: 120px; min-height: 100vh;">
+        <div class="container">
+            
+            <!-- Command HUD -->
+            <div class="command-dashboard reveal">
+                <div class="hud-item">
+                    <span class="hud-label">CURRENT MISSION</span>
+                    <span class="hud-value">TITAN ERADICATION</span>
+                </div>
+                <div class="hud-item">
+                    <span class="hud-label">DIFFICULTY</span>
+                    <span class="hud-value" id="hudDiff">NORMAL</span>
+                </div>
+                <div class="hud-item">
+                    <span class="hud-label">PLAYER CLASS</span>
+                    <span class="hud-value" id="hudPlayerType">PENDING</span>
+                </div>
+                <div class="hud-item">
+                    <span class="hud-label">HIGH SCORE</span>
+                    <span class="hud-value hud-score" id="hudHighScore">0</span>
+                </div>
+                <div class="hud-item">
+                    <span class="hud-label">MISSION SCORE</span>
+                    <span class="hud-value hud-score" id="hudScore">0</span>
+                </div>
+            </div>
+
+            <!-- Phase 1: Selection -->
+            <div class="selection-phase" id="selectionPhase">
+                <h2 class="selection-title reveal">CHOOSE YOUR WARRIOR</h2>
+                
+                <div class="difficulty-selector reveal">
+                    <button class="diff-btn" data-diff="easy">EASY</button>
+                    <button class="diff-btn active" data-diff="normal">NORMAL</button>
+                    <button class="diff-btn" data-diff="hard">HARD</button>
+                </div>
+
+                <div style="display: flex; gap: 2rem; flex-wrap: wrap;">
+                    <div style="flex: 1; min-width: 300px;" class="reveal">
+                        <h3 style="color:var(--military-green-light); margin-bottom:1rem; font-family:var(--font-heading);">PLAYER TITAN</h3>
+                        <div class="selection-grid" id="playerSelectGrid"></div>
+                    </div>
+                    <div style="flex: 1; min-width: 300px;" class="reveal">
+                        <h3 style="color:var(--accent); margin-bottom:1rem; font-family:var(--font-heading);">ENEMY TITAN</h3>
+                        <div class="selection-grid" id="enemySelectGrid"></div>
+                    </div>
+                </div>
+
+                <button class="btn btn-accent reveal" id="startBattleBtn" disabled style="margin-top: 2rem; font-size: 1.5rem; padding: 1.5rem 4rem;">INITIATE COMBAT</button>
+            </div>
+
+            <!-- Phase 2: Battle -->
+            <div class="battle-phase" id="battlePhase">
+                
+                <div class="battle-arena">
+                    <!-- Player Panel -->
+                    <div class="titan-panel player">
+                        <h3 id="playerName">PLAYER</h3>
+                        <div class="titan-avatar" id="playerAvatar">
+                            <img src="" alt="Player Titan">
+                        </div>
+                        <div class="hp-container">
+                            <div class="hp-label"><span>HP</span><span id="playerHpLabel">100 / 100</span></div>
+                            <div class="hp-bar-bg"><div class="hp-bar-fill" id="playerHpFill" style="width: 100%;"></div></div>
+                        </div>
+                    </div>
+
+                    <!-- Enemy Panel -->
+                    <div class="titan-panel enemy">
+                        <h3 id="enemyName">ENEMY</h3>
+                        <div class="titan-avatar" id="enemyAvatar">
+                            <img src="" alt="Enemy Titan">
+                        </div>
+                        <div class="hp-container">
+                            <div class="hp-label"><span>HP</span><span id="enemyHpLabel">100 / 100</span></div>
+                            <div class="hp-bar-bg"><div class="hp-bar-fill" id="enemyHpFill" style="width: 100%;"></div></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Controls -->
+                <div class="battle-controls">
+                    <button class="battle-btn" id="btnAttack">ATTACK</button>
+                    <button class="battle-btn btn-special" id="btnSpecial">SPECIAL</button>
+                    <button class="battle-btn" id="btnDefend">DEFEND</button>
+                    <button class="battle-btn btn-reset" id="btnReset">FLEE / RESET</button>
+                </div>
+
+                <!-- Log -->
+                <div class="battle-log" id="battleLog">
+                    <div class="log-entry system-action">> AWAITING COMBAT INITIATION...</div>
+                </div>
+
+            </div>
+
+        </div>
+    </main>
+
+    <!-- End Screen Overlay -->
+    <div class="end-screen" id="endScreen">
+        <h1 class="end-title" id="endTitle">VICTORY</h1>
+        <p class="end-desc" id="endDesc">THE ENEMY TITAN HAS FALLEN.</p>
+        <button class="btn btn-outline" id="btnEndReset">RETURN TO COMMAND CENTER</button>
+    </div>
+
+    <!-- Achievement Toast Container handled by JS -->
+
+    <footer>
+        <div class="container">
+            <h2 class="logo">AOT <span>CHRONICLES</span></h2>
+            <div class="copyright"><p>&copy; 2026 AOT Chronicles. All rights reserved.</p></div>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
